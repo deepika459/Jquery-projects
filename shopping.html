@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>shop</title>
+    <script src="js/jquery-2.1.4.min.js"></script>
+    <link rel="shortcut icon" href="coconut.jpg" type="image/png">
+
+    <script src="js/handlebars-v3.0.3.js"></script>
+
+    <script src="js/bootstrap.min.js"></script>
+    <link href="css/bootstrap_blue.css" rel="stylesheet">
+    <link href="css/gallery.css" rel="stylesheet">
+
+  </head>
+  <body>
+   <!-- <div class="container-fluid"> -->
+<div class="container">
+
+  <div class="row page-header">
+          <div class="col-md-3">
+                <img class="image" src="444.jpg" />
+          </div>
+          <div class="col-md-3">
+                <h1>Grocery Shop</h1>
+          </div>
+      <div class="col-md-6">
+
+          <div class="nav nav-tab" id="navigation">
+                  <div class="row">
+                        <div class="col-md-6">
+
+
+                            <button style="float:right" type="button"  name="button" class="btn btn-success"><b>Sign Up</b></button>
+
+                        </div>
+
+                        <div class="col-md-6">
+                          <button style="" type="button"  name="button" class="btn btn-success"><b>Login In</b></button>
+
+                        </div>
+                 </div>
+          </div>
+      </div>
+ </div>
+
+
+
+
+
+
+
+  <div class="row nav nav-tabs">
+ <div class="col-md-2">
+
+   <a href="Myanimal_gallery.html" class="white"><span><h3 style="font-family:serif;"><b>Categories</b></h3></span></a>
+ </div>
+ <div class="col-md-2">
+
+   <a href="#" class="white"><span><h3 style="font-family:serif;"><b>Items</b></h3></span></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ </div>
+ <div class="col-md-2">
+
+   <a href="#" class="white"><span><h3 style="font-family:serif;"><b>Juicy</b></h3></span></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ </div>
+ <div class="col-md-2">
+
+   <a href="Myanimal_gallery.html" class="white"><span><h3 style="font-family:serif;"><b>Shop</b></h3></span></a>
+ </div>
+ <div class="col-md-2">
+
+   <a href="Myanimal_gallery.html" class="white"><span><h3 style="font-family:serif;"><b>goto cart</b></h3></span></a>
+ </div>
+ <div class="col-md-2">
+
+   <a href="Myanimal_gallery.html" class="white"><span><h3 style="font-family:serif;"><b>choose</b></h3></span></a>
+ </div>
+
+
+  </div>
+
+</div>
+
+
+<div class="container">
+  <div class="row imagess">
+    <div class="col-md-3">
+      <img id="image1"
+       class="crop-img" src="img_1.jpg" alt="graffittied building"/>
+    </div>
+    <div class="col-md-3">
+      <img id="image2" class="crop-img" src="img_2.jpg" alt="display of cheese"/>
+    </div>
+    <div class="col-md-3">
+      <img id="image3" class="crop-img" src="img_3.jpg" alt="synethesizer workshop"/>
+    </div>
+    <div class="col-md-3">
+      <img id="image4" class="crop-img" src="img_4.jpg" alt="City night"/>
+    </div>
+  </div>
+
+
+
+  <div class="row imagebig">
+    <div class="col-md-1">
+      <button id="backward" class="butto">&#10094;</span>
+    </div>
+    <div class="col-md-10">
+      <img id="bigImage" class="thumbnail" src="img_1.jpg" alt="graffittied building" height="500" width="900"/>
+    </div>
+    <div class="col-md-1">
+      <button id="forward" class="butto">&#10095;</button>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+
+var paused = false;
+
+// when you click on a thumbnail
+// it sets the src of the big image
+// to be the same as the image
+// you clicked on
+$(".crop-img").click(function(){
+  $("#bigImage").attr('src',
+    $(this).attr('src'));
+});
+
+// the counter variable that keeps
+// track of which image you are showing
+var counter = 1;
+// virtually click on the current
+// image to load it into the big image
+$("#image"+counter).click();
+
+// when you click on the backwards
+// button select the previous image
+$("#backward").click(function (){
+  // go back one in the counter
+  counter = counter - 1;
+  // if we are below 1 (the first
+  // image) loop round to 4 (the
+  // last image)
+  if(counter < 1){
+    counter = 4;
+  }
+  // virtually click on the current
+  // image to load it into the big image
+  $("#image"+counter).click();
+});
+
+// when you click on the backwards
+// button select the next image
+$("#forward").click(function (){
+  // go forward one in the counter
+  counter = counter + 1;
+  // if we are above 4 (the last
+  // image) loop round to 1 (the
+  // first image)
+  if(counter > 4){
+    counter = 1;
+  }
+  // virtually click on the current
+  // image to load it into the big image
+  $("#image"+counter).click();
+});
+
+// when you click the big image
+// toggle pausing. Set paused to
+// not paused, i.e. if it is paused
+// set it to not paused, if it is
+// not paused set it to paused
+$("#bigImage").click(function (){
+  paused = !paused;
+});
+
+// set interval makes it move
+// forward every 3 second
+setInterval(function (){
+  // first check if it is paused
+  if(!paused){
+    // virtual click the forward
+    // button
+    $("#forward").click();
+  };
+}, 3000);
+
+</script>
+
+
+  </body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="js/jquery-2.1.4.min.js"></script>
+
+    <script src="js/handlebars-v3.0.3.js"></script>
+
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/photos.js"></script>
+
+    <link href="css/bootstrap_blue.css" rel="stylesheet">
+    <link href="css/gallery.css" rel="stylesheet">
+  </head>
+  <body>
+
+    <div class="container backgroundimage">
+      <h1>Shop Now!!!</h1>
+      <div class="row">
+
+        <div class="col-md-2 col-sm-12">
+           <div id="content_left">
+
+           </div>
+        </div>
+
+        <div class="col-md-2 col-sm-12">
+           <div id="content_right">
+
+           </div>
+        </div>
+
+
+      </div>
+      <!-- <div id="content_middle">
+
+      </div> -->
+    </div>
+<!-- showing unique images  -->
+
+    <script id="unique" type="text/x-handlebars-template">
+      <div class="container">
+
+        <img class="crop-img" src="{{image1}}">
+
+      </div>
+
+    </script>
+<!-- end of unique images -->
+
+    <script id="content1" type="text/x-handlebars-template">
+
+      <ul class="nav nav-pills nav-stacked nav-pills-stacked-example">
+
+        {{#each pets}}
+
+        <li><a href="#" class="link" data-id="{{name}}">{{name}}</a></li>
+
+        {{/each}}
+
+      </ul>
+
+    </script>
+    <script id="content2" type="text/x-handlebars-template">
+      <h2 style="color:pink"><b>{{name}}</b></h2>
+      <div class="container">
+
+        <div class="row">
+
+          <div class="col-md-4 col-sm-6 col-xs-6 imageh">
+
+          <a href="#"><img class="crop-img" src="{{image1}}" /></a>
+            <div class="price">
+            <b>  {{price}} </b>
+            </div>
+          </div>
+
+          <div class="col-md-4 col-sm-6 col-xs-6 imageh">
+
+            <img class="crop-img" src="{{image2}}" />
+            <div class="price">
+            <b>  {{price}} </b>
+            </div>
+          </div>
+
+
+        </div>
+        <div class="row">
+          <div class="col-md-10">
+          <!-- <h4>{{description}}</h4> -->
+        </div>
+      </div>
+
+</div>
+    </script>
+
+    <script type="text/javascript">
+
+    var source = $("#content1").html();
+
+    var template = Handlebars.compile(source);
+
+    var html = template(data);
+
+    $("#content_left").html(html);
+
+     $(".link").on('click',function(e){
+       var pet_name = $(e.target).data('id');
+       for(i=0;i<data.pets.length;i++){
+         var array = data.pets[i];
+         if(array.name == pet_name){
+           break;
+         }
+       }
+
+       var source = $("#content2").html();
+
+        var template = Handlebars.compile(source);
+
+        var html = template(array);
+
+        $("#content_right").html(html);
+     });
+
+     // showing unique images
+    //  var source = $("#unique").html();
+    //
+    // var template = Handlebars.compile(source);
+    //
+    //  $(".crop-img").click(function(){
+    //
+    //     var html = template(data);
+    //    $("#content_middle").html(html);
+    //  });
+
+
+      // $("#hit").click(function(){
+      //   var imagee = $(this).attr('src');
+      //   for(i=0;i<data.pets.length;i++){
+      //     var array = data.pets[i];
+      //     if(array.image1==imagee){
+      //       break;
+      //     }
+      //   }
+      //
+      //   var source = $("#unique").html();
+      //
+      //   var template = Handlebars.compile(source);
+      //
+      //   var html = template(array);
+      //
+      //   $("#content_middle").html(html);
+      // });
+
+     // var source = $("#unique").html();
+     //
+     // var template = Handlebars.compile(source);
+     //
+     //  $(".crop-img").click(function(){
+     //    var source = $(this).attr('src');
+     //
+     //    var html = template(source);
+     //
+     //    $("#content_middle").html(html);
+     //  });
+    </script>
+  </body>
+</html>
